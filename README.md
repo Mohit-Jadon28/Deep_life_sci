@@ -3,11 +3,11 @@
 FastAPI backend (agent harness, streamed over SSE) + React/Vite UI. Free-tier friendly: Groq models + Tavily search.
 
 ## Run on Windows (PowerShell)
-Start these commands from the `Deep_Life_Sci` workspace folder (the folder containing `deep-life-sci-react`).
+Start these commands from the project root (the folder containing `backend` and `frontend`).
 
 ```powershell
 # 1. Backend
-cd .\deep-life-sci-react\backend
+cd .\backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
@@ -17,17 +17,17 @@ if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 uvicorn main:app --reload --port 8000
 ```
 
-Open a second PowerShell terminal from the `Deep_Life_Sci` workspace folder:
+Open a second PowerShell terminal from the project root:
 
 ```powershell
 # 2. Frontend
-cd .\deep-life-sci-react\frontend
+cd .\frontend
 npm ci
 npm run dev
 ```
 Open http://localhost:5173. If PowerShell blocks activation scripts, run `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass` in that terminal and activate again.
 
-For macOS/Linux, start from the `Deep_Life_Sci` workspace folder, use `cd deep-life-sci-react/backend`, `python3 -m venv .venv`, `source .venv/bin/activate`, and `cp -n .env.example .env`; use `cd deep-life-sci-react/frontend` and `npm ci` in the second terminal.
+For macOS/Linux, start from the project root, use `cd backend`, `python3 -m venv .venv`, `source .venv/bin/activate`, and `cp -n .env.example .env`; use `cd frontend` and `npm ci` in the second terminal.
 
 ## Workflow (what happens on every question)
 1. **Prime** - BM25 (SQLite FTS5) recalls relevant long-term memory into the system prompt.
